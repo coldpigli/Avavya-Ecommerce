@@ -1,7 +1,7 @@
 /* Importing My CSS Component Library Ingredients  */
 @import url("https://ingredient.netlify.app/css/main.css");
 /* Getting Google Fonts  */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap');
+
 
 /* Defining root colors for the brand */
 :root{
