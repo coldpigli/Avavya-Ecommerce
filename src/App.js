@@ -1,10 +1,11 @@
 import "./App.css";
 import { RoutingPath } from "./configs";
+import { Navbar } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <h1>hi from app</h1>
+      <Navbar/>
       <RoutingPath/>
     </div>
   );
