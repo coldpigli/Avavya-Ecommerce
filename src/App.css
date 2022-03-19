@@ -146,7 +146,7 @@
 .avavya-hero-img {
     border-radius: 2.5rem;
     height: 70vh;
-    /* background-image: url("./assets/bg.png"); */
+    background-image: url("https://ik.imagekit.io/avavya/Avavya-Ecommerce/bg_3c-fA5zMa.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647588900661");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -266,8 +266,7 @@
         display: none;
     }
     .avavya-hero-img{
-        /* background-image: url("./assets/bg-mobile.png"); */
-        /* Will update it soon  */
+        background-image: url("https://ik.imagekit.io/avavya/Avavya-Ecommerce/bg-mobile_xBkVj_LKZu.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647588901184");
     }
     .search-container{
         width: 100%;

@@ -13,13 +13,14 @@ const Home = () => {
             <h1 className="heading1">Order your</h1>
             <h1 className='heading1'>Daily Groceries</h1>
             <h2 className="heading2 txt-brand-color gap-d30">#Free Delivery</h2>
-            <SearchBar/>   
+            {/* TODO: Implement Search Functionality */}
+            <SearchBar/> 
         </div>
     </section>
-    <CategorySection title="Categories">
+    <CategorySection title="Categories" nextUrl="Products">
       <CategoryList />
     </CategorySection>
-    <CategorySection title="Popular Items" variation="primary">
+    <CategorySection title="Popular Items" nextUrl="Products">
       {/* <ProductList/> */}
     </CategorySection>
     </>
