@@ -1,15 +1,27 @@
-import React from 'react'
-import { categoryData } from '../constants'
-import CategoryItem from './CategoryItem'
+import CategoryItem from './CategoryItem';
+import useAxios from '../utils/useAxios';
+import { Loader } from '../containers';
 
 const CategoryList = () => {
+
+  let categoryData=[];
+  const {responseData, loading, errorFlag} = useAxios("/api/categories");
+  
+  if(!errorFlag&&!loading){
+     categoryData = responseData.categories
+  }
+  
   return (
-    <div class="category-item-list flex children-centered wrap">
+    <div className="category-item-list flex children-middle wrap">
         {
-            categoryData.map((category)=><CategoryItem category={category}/>)
+         (loading)? <Loader/>
+         :
+         errorFlag ? <p>Uh oh! we ran into some problems</p>
+         :
+         categoryData.map((category)=><CategoryItem category={category} key={category.id}/>)
         }
-    </div>
+        </div>
   )
 }
 
-export default CategoryList
+export default CategoryList;
