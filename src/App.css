@@ -159,9 +159,9 @@
 }
 
 .search-container{
-    /* gap: var(--space-sm); */
-    background-color: var(--background-day);
-    border-radius: var(--radius-lg);
+    margin: 0 auto 1.875rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .search-bar{
@@ -259,6 +259,16 @@
     background-color: var(--primary-opaque);
 }
 
+.breadcrumbs{
+    margin-bottom : 1.875rem;
+}
+.product-page{
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
 .footer{
     margin: 5rem auto;
     gap: 1rem;
@@ -320,11 +330,9 @@
         background-image: url("https://ik.imagekit.io/avavya/Avavya-Ecommerce/bg-mobile_xBkVj_LKZu.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647588901184");
     }
     .search-container{
-        width: 100%;
-        background-color: transparent;
-        flex-wrap: wrap;
         gap: 1rem;
-        justify-content: flex-start;
+        justify-content: center;
+        align-items: center;
     }
     .category-section{
         width: 90%;
@@ -339,5 +347,8 @@
     .card{
         width: 11rem;
         flex-grow: 1;
+    }
+    .product-page{
+        width: 90%;
     }
 }
