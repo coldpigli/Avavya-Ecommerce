@@ -1,12 +1,13 @@
 import "./App.css";
 import { RoutingPath } from "./configs";
-import { Navbar } from "./components";
+import { Footer, Navbar } from "./components";
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
       <RoutingPath/>
+      <Footer/>
     </div>
   );
 }
