@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import SearchBar from "./SearchBar";
 import ProductItem from "./ProductItem";
 import ProductList from "./ProductList";
+import FilterItem from "./FilterItem";
+import FilterList from "./FilterList";
 
 export {
     Navbar,
@@ -13,5 +15,7 @@ export {
     Footer,
     SearchBar,
     ProductItem,
-    ProductList
+    ProductList,
+    FilterList,
+    FilterItem
 }

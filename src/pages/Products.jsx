@@ -1,4 +1,4 @@
-import { CategoryList, SearchBar } from "../components"
+import { CategoryList, FilterList, SearchBar } from "../components"
 import { BreadCrumb } from "../containers"
 
 const Products = () => {
@@ -7,6 +7,7 @@ const Products = () => {
       <BreadCrumb path="Products" className="gap-d30"/>
       <SearchBar/>
       <CategoryList/>
+      <FilterList/>
     </div>
   )
 }

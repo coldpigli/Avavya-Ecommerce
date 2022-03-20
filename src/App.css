@@ -269,6 +269,24 @@
     flex-direction: column;
 }
 
+.filter-bar{
+    width: 90%;
+    margin: 1.875rem auto 1.875rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-chip{
+    display: flex;
+    color: var(--font-gray);
+    width: fit-content;
+    border: 1px solid var(--font-gray-light);
+    font-weight: 400;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+}
+
 .footer{
     margin: 5rem auto;
     gap: 1rem;
@@ -350,5 +368,14 @@
     }
     .product-page{
         width: 90%;
+    }
+    .filter-bar{
+        width: 100%;
+        overflow-x: scroll;
+        gap: 1rem;
+        margin: 1.875 auto 0;
+    }
+    .filter-chip{
+        min-width: fit-content;
     }
 }

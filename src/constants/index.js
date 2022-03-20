@@ -1,8 +1,5 @@
-import categoryData from "./CategoryData";
-import products from "./ProductData";
-
+import filterItems from "./filterItems"
 
 export {
-    categoryData,
-    products
+    filterItems
 }

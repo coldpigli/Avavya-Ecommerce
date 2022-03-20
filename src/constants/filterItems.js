@@ -1,5 +1,10 @@
 const filterItems = [
 {
+    id: 0,
+    name: "Reset All",
+    icon: "filter_alt"
+},
+{
     id: 1,
     name: "Max Safety",
     icon: "health_and_safety"
@@ -24,4 +29,6 @@ const filterItems = [
     name: "Cost",
     icon: "import_export"
 }
-]
+];
+
+export default filterItems;
