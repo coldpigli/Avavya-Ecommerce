@@ -1,6 +1,6 @@
 import React from 'react'
 import { CategoryList, SearchBar } from '../components';
-// import ProductList from '../components/ProductList';
+import ProductList from '../components/ProductList';
 import { CategorySection } from '../containers';
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
       <CategoryList />
     </CategorySection>
     <CategorySection title="Popular Items" nextUrl="Products">
-      {/* <ProductList/> */}
+      <ProductList/>
     </CategorySection>
     </>
   )

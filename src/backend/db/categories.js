@@ -8,18 +8,18 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    icon: "set_meal",
-    name: "Fish" 
+    icon: "fastfood",
+    name: "Essentials" 
 },
 {
     _id: uuid(),
     icon: "egg",
-    name: "Poultry" 
+    name: "Organic" 
 },
 {
     _id: uuid(),
     icon: "medical_services",
-    name: "Medicine" 
+    name: "Hygiene" 
 },
 {
     _id: uuid(),
@@ -29,11 +29,11 @@ export const categories = [
 {
     _id: uuid(),
     icon: "liquor",
-    name: "Alcohol" 
+    name: "Beverages" 
 },
 {
     _id: uuid(),
-    icon: "emoji_food_beverage",
-    name: "Coffee" 
+    icon: "tapas",
+    name: "Snacks" 
 },
 ];
