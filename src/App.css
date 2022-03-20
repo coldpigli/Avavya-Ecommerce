@@ -253,6 +253,7 @@
     background-color: var(--brand-color);
     padding: var(--space-xs);
     border-radius: var(--radius-round);
+    cursor: pointer;
 }
 .add-to-bag:hover{
     background-color: var(--primary-opaque);
