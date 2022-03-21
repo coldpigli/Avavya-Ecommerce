@@ -2,32 +2,38 @@ const filterItems = [
 {
     id: 0,
     name: "Reset All",
-    icon: "filter_alt"
+    icon: "filter_alt",
+    active: false
 },
 {
     id: 1,
     name: "Max Safety",
-    icon: "health_and_safety"
+    icon: "health_and_safety",
+    active: false
 },
 {
     id: 2,
     name: "Fast Delivery",
-    icon: "bolt"
+    icon: "bolt",
+    active: false
 },
 {
     id: 3,
     name: "Great Offers",
-    icon: "celebration"
+    icon: "celebration",
+    active: false
 },
 {
     id: 4,
     name: "Rating 4.0+",
-    icon: "star"
+    icon: "star",
+    active: false
 },
 {
     id: 5,
     name: "Cost",
-    icon: "import_export"
+    icon: "import_export",
+    active: false
 }
 ];
 

@@ -8,15 +8,16 @@ const useFilter = () => useContext(FilterContext);
 
 const FilterProvider = ({children}) => {
 
-    const [filterState, dispatch] = useReducer(filterReducer, {
+    const [filterState, filterDispatch] = useReducer(filterReducer, {
         maxSafety: false,
         fastDelivery: false,
         greatOffers: false,
         highRating: false,
-        sortByCost: ''
+        sortByCost: '',
+        category: ""
     })
 
-return  <FilterContext.Provider value={{filterState, dispatch}}>
+return  <FilterContext.Provider value={{filterState, filterDispatch}}>
             {children}
         </FilterContext.Provider>
 };
