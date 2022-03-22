@@ -159,9 +159,9 @@
 }
 
 .search-container{
-    /* gap: var(--space-sm); */
-    background-color: var(--background-day);
-    border-radius: var(--radius-lg);
+    margin: 0 auto 1.875rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .search-bar{
@@ -185,8 +185,14 @@
 .category-section{
     margin: 5rem auto 2rem auto;
     gap: 5rem;
-    width: 70%;
+    width: 75%;
 }
+
+.product-section{
+    margin: 2rem auto 2rem auto;
+    gap: 5rem;
+}
+
 .sale{
     background-color: var(--background-skyblue-opaque);
     padding: 4rem;
@@ -259,6 +265,44 @@
     background-color: var(--primary-opaque);
 }
 
+.breadcrumbs{
+    margin-bottom : 1.875rem;
+}
+.product-page{
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.filter-bar{
+    width: 90%;
+    margin: 1.875rem auto 1.875rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-chip{
+    display: flex;
+    color: var(--font-gray);
+    align-items: center;
+    transition: transform .1s;
+    width: fit-content;
+    border: 1px solid var(--font-gray-light);
+    font-weight: 400;
+    padding: 0.3rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+}
+.filter-chip:hover{
+    transform: scale(1.1);
+}
+
+.filter-chip-active{
+    color: var(--background-day);
+    background-color: var(--brand-color);
+}
+
 .footer{
     margin: 5rem auto;
     gap: 1rem;
@@ -320,11 +364,9 @@
         background-image: url("https://ik.imagekit.io/avavya/Avavya-Ecommerce/bg-mobile_xBkVj_LKZu.png?ik-sdk-version=javascript-1.4.3&updatedAt=1647588901184");
     }
     .search-container{
-        width: 100%;
-        background-color: transparent;
-        flex-wrap: wrap;
         gap: 1rem;
-        justify-content: flex-start;
+        justify-content: center;
+        align-items: center;
     }
     .category-section{
         width: 90%;
@@ -339,5 +381,17 @@
     .card{
         width: 11rem;
         flex-grow: 1;
+    }
+    .product-page{
+        width: 90%;
+    }
+    .filter-bar{
+        width: 100%;
+        overflow-x: scroll;
+        gap: 1rem;
+        margin: 1.875 auto 0;
+    }
+    .filter-chip{
+        min-width: fit-content;
     }
 }

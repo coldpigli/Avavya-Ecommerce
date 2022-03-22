@@ -5,6 +5,7 @@ import Products from "./Products";
 import Signup from "./Signup";
 import Wishlist from "./Wishlist";
 import ErrorPage from "./ErrorPage";
+import MockMan from "./MockMan";
 
 
 export
@@ -15,5 +16,6 @@ export
     Products,
     Signup,
     Wishlist,
-    ErrorPage
+    ErrorPage,
+    MockMan
 }
