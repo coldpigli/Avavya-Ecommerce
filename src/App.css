@@ -213,6 +213,12 @@
     border-radius: var(--radius-lg);
 }
 
+.category-item-active{
+    background-color: var(--background-day);
+    color: var(--brand-color);
+    border: 2px solid var(--brand-color)
+}
+
 .category-item:hover{
     transform: scale(1.2);
 }

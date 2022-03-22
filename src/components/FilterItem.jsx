@@ -14,6 +14,7 @@ const FilterItem = ({filter, setFilterList, filterList}) => {
       filterDispatch({type: filter.name,payload:''})
       return;
     }
+
     //to track which filters are active inorder to change active states
     const temp = filterList.map((item)=>{
      return (item.name===filter.name) ? ({...item, active: !item.active}): item

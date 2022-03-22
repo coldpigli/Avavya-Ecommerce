@@ -21,11 +21,17 @@ const applyGreatOffers = (products, filterState) => {
 }
 
 const applyHighRating = (products, filterState) => {
-    return (filterState.highRating)?products.filter((product)=>(product.rating>4)):[...products]
+    return (filterState.highRating)?products.filter((product)=>(product.rating>=4)):[...products]
 }
 
-const applyCategories = () =>{
-    
+const applyCategories = (products, filterState) =>{
+    const {categoryState} = filterState;
+    if(categoryState.length==0){
+        return products;
+    }
+    else{
+        return products.filter((item)=>categoryState.includes(item.category))
+    }
 }
 
 const composeAllFilters = (filterState,...args) =>(products)=>{
@@ -45,6 +51,7 @@ const getProducts = (filterState, products) => {
         applyFastDelivery,
         applyGreatOffers,
         applyHighRating,
+        applyCategories
     )(products)
 }
 

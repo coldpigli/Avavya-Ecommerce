@@ -15,7 +15,6 @@ const ProductList = () => {
     const {filterState} = useFilter();
 
     const filteredProducts = getProducts(filterState, products);
-
   return (
     <div className='popular-item children-middle wrap'>
         {
