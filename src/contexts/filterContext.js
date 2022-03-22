@@ -14,7 +14,7 @@ const FilterProvider = ({children}) => {
         greatOffers: false,
         highRating: false,
         sortByCost: '',
-        category: ""
+        category: []
     })
 
 return  <FilterContext.Provider value={{filterState, filterDispatch}}>

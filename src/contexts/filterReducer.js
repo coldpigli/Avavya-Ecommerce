@@ -23,7 +23,7 @@ switch (action.type) {
             greatOffers: false,
             highRating: false,
             sortByCost: '',
-            category: ""
+            category: []
         }
     default:
         return state;
