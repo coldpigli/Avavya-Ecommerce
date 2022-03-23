@@ -5,6 +5,16 @@ const FilterItem = ({filter, setFilterList, filterList}) => {
   const {filterDispatch} = useFilter();
 
   const handleClick = (filter) => {
+    //to check if the filter clicked is reset all
+    if(filter.name=="Reset All"){
+      const resetArr = filterList.map((item)=>{
+        return ({...item, active: false})
+      });
+      setFilterList(resetArr);
+      filterDispatch({type: filter.name,payload:''})
+      return;
+    }
+
     //to track which filters are active inorder to change active states
     const temp = filterList.map((item)=>{
      return (item.name===filter.name) ? ({...item, active: !item.active}): item

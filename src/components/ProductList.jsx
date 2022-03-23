@@ -1,4 +1,6 @@
 import { Loader } from "../containers";
+import { useFilter } from "../contexts";
+import { getProducts } from "../utils";
 import useAxios from "../utils/useAxios"
 import ProductItem from "./ProductItem";
 
@@ -10,6 +12,9 @@ const ProductList = () => {
         products = [...responseData.products]
     }
 
+    const {filterState} = useFilter();
+
+    const filteredProducts = getProducts(filterState, products);
   return (
     <div className='popular-item children-middle wrap'>
         {
@@ -19,7 +24,7 @@ const ProductList = () => {
             (loading)?
             <Loader/>
             :
-            products.map((product)=>{
+            filteredProducts.map((product)=>{
                 return <ProductItem product={product} key={product.id}/>
             })
         }
