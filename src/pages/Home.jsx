@@ -2,8 +2,13 @@ import React from 'react'
 import { CategoryList, SearchBar } from '../components';
 import ProductList from '../components/ProductList';
 import { CategorySection } from '../containers';
+import { useProducts } from '../contexts/productContext';
 
 const Home = () => {
+
+  const {allProducts, loading, errorFlag} = useProducts();
+  const productsOnSale = allProducts.filter((item)=>item.offer);
+
   return (
     <>
     <section className="avavya-hero w-90">
@@ -21,7 +26,7 @@ const Home = () => {
       <CategoryList />
     </CategorySection>
     <CategorySection title="Popular Items" nextUrl="Products">
-      <ProductList/>
+      <ProductList productList={productsOnSale} loading={loading} errorFlag={errorFlag}/>
     </CategorySection>
     </>
   )
