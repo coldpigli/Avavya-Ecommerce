@@ -1,5 +1,8 @@
 import { TextField } from "../components"
-import { useState } from "react"
+import { useState} from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router';
+import { useAuth } from "../contexts";
 
 const Login = () => {
 
@@ -8,9 +11,35 @@ const Login = () => {
     password: ""
   })
 
+  const {isLoggedIn,setIsLoggedIn, userDetails, setUserDetails} = useAuth();
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const {name,value} = e.target;
     setLoginData((prev)=>({...prev, [name]: value}))
+  }
+
+  const handleLogin = async(credentials) => {
+    try {
+      const response = await axios.post("/api/auth/login",credentials);
+      if(response.status===200){
+      setIsLoggedIn(true);
+      const {data} = response;
+      const {firstName,cart,wishlist} = data.foundUser;
+      setUserDetails({
+        cartList: cart,
+        wishList: wishlist,
+        firstName: firstName
+      });
+      localStorage.setItem("userToken",data.encodedToken)
+      navigate("/products")
+    }
+      else{
+        console.log("Oops login didn't work")
+      }
+    } catch (error) {
+      console.log("We couldn't sign you in", error);
+    }
   }
 
   return (
@@ -34,9 +63,17 @@ const Login = () => {
           value={loginData.password}
           handleChange={handleChange}
         />
-        <p className="paragraph2 txt-gray gap-d30"> <a href="#">Forgot Password?</a></p>
-        <p className="paragraph2 txt-gray gap-d30"> <a href="../home.html">Sign In as Guest?</a></p>
-        <button className="btn btn-primary gap-d20">
+        <p className="paragraph2 txt-gray gap-d30"> 
+          <a href="#">
+            Forgot Password?
+          </a>
+        </p>
+        <p className="paragraph2 txt-gray gap-d30"> 
+          <a href="../home.html">
+            Login with Test Credentials
+          </a>
+        </p>
+        <button className="btn btn-primary gap-d20" onClick = {()=>handleLogin(loginData)}>
             <span className="material-icons md-24 gap-r10">login</span>
                 Sign - In
         </button>

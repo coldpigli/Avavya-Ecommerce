@@ -3,5 +3,5 @@ import { getProducts } from "./helperFunctions";
 
 export{
     useAxios,
-    getProducts
+    getProducts,
 }

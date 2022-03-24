@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import {TextField} from "../components";
 
@@ -21,6 +22,12 @@ const Signup = () => {
   const matchPasswords = (e) => {
     setConfirmPass(e.target.value);
     (e.target.value===signupData.password)?setShowError(false):setShowError(true);
+  }
+
+  const handleSignup = async(e) => {
+      e.preventDefault();
+      const response  = await axios.post("/api/auth/signup", signupData);
+      console.log(response);
   }
 
   return (
@@ -77,7 +84,7 @@ const Signup = () => {
         null
         }
         <p className="paragraph2 txt-gray gap-d30"> <a href="./login-page.html">Already Have an Account?</a></p>
-        <button className="btn btn-primary btn-signup gap-d20" type="submit" >
+        <button className="btn btn-primary btn-signup gap-d20" type="submit" onClick={(e)=>handleSignup(e)}>
             <span className="material-icons md-24 gap-r10">login</span>
                 Sign - Up
         </button>  

@@ -1,19 +1,18 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { useAuth } from "../contexts";
 
 const Cart = () => {
 
-  useEffect(()=>{
-    axios.post("/api/auth/signup",{
-      firstName: "abcd",
-      lastName: "defgh",
-      email: "iamdiscodancer@fgamil.com",
-      password: "mithunda"
-    }).then((res)=>console.log(res)).catch((err)=>console.log(err));
-  },[])
+ const {isLoggedIn, userDetails} = useAuth();
 
   return (
-    <div>This is the Cart Page</div>
+    <div>{
+      (isLoggedIn)
+      ?
+      <h1>Welcome to your cart {userDetails.firstName}</h1>
+      :
+      <h1>You need to login to access Cart</h1>
+    }
+   </div>
   )
 }
 
