@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IconBadge } from '../containers';
 import brandLogo from "../assets/avavya-logo.png"
 import { useAuth } from '../contexts';
@@ -11,9 +11,11 @@ const Navbar = () => {
   return (
     <div className="navigation-top w-75">
     <header className="nav-bar left-aligned">
+        <Link to="/">
         <div className="brand-img children-middle">
             <img src={brandLogo} alt="avavya-logo"/>
         </div>
+        </Link>
         <section className="nav-links flex">
             <NavLink to="/" className="nav-item paragraph2">
                 Home
@@ -34,10 +36,10 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="wishlist">
-                <IconBadge nextPath={isLoggedIn?"/wishlist":"/login"} iconName="favorite_border" count={isLoggedIn?userDetails.wishList.length:3} />
+                <IconBadge nextPath={"/wishlist"} iconName="favorite_border" count={isLoggedIn?userDetails.wishList.length:0} />
             </div>
             <div className="cart">
-                <IconBadge nextPath={isLoggedIn?"/cart":"/login"} iconName="shopping_cart" count={isLoggedIn?userDetails.cartList.length:3}/>
+                <IconBadge nextPath={"/cart"} iconName="shopping_cart" count={isLoggedIn?userDetails.cartList.length:0}/>
             </div>  
         </section>
     </header>

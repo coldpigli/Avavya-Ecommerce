@@ -3,6 +3,7 @@ import { useState} from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router';
 import { useAuth } from "../contexts";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -11,8 +12,13 @@ const Login = () => {
     password: ""
   })
 
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const {isLoggedIn,setIsLoggedIn, userDetails, setUserDetails} = useAuth();
   const navigate = useNavigate();
+  const testCredentials = {
+    email: "piyushdas98@gmail.com",
+    password: "Piyush@123"
+  }
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -22,8 +28,9 @@ const Login = () => {
   const handleLogin = async(credentials) => {
     try {
       const response = await axios.post("/api/auth/login",credentials);
-      if(response.status===200){
+      if(response.status===200 || response.status===201){
       setIsLoggedIn(true);
+      setLoginErrorMsg("");
       const {data} = response;
       const {firstName,cart,wishlist} = data.foundUser;
       setUserDetails({
@@ -35,9 +42,11 @@ const Login = () => {
       navigate("/products")
     }
       else{
-        console.log("Oops login didn't work")
+        if(response.status=404)
+        setLoginErrorMsg("Oops! That didn't work. Check your credentials");
       }
     } catch (error) {
+      setLoginErrorMsg("Oops! That didn't work. Check your credentials")
       console.log("We couldn't sign you in", error);
     }
   }
@@ -63,21 +72,17 @@ const Login = () => {
           value={loginData.password}
           handleChange={handleChange}
         />
-        <p className="paragraph2 txt-gray gap-d30"> 
-          <a href="#">
-            Forgot Password?
-          </a>
-        </p>
-        <p className="paragraph2 txt-gray gap-d30"> 
-          <a href="../home.html">
+
+        {loginErrorMsg &&  <p className="error-msg paragraph2 txt-gray gap-d30"> {loginErrorMsg}</p>}
+       
+        <p className="paragraph2 txt-gray gap-d30 cursor-point" onClick={()=>handleLogin(testCredentials )}> 
             Login with Test Credentials
-          </a>
         </p>
         <button className="btn btn-primary gap-d20" onClick = {()=>handleLogin(loginData)}>
             <span className="material-icons md-24 gap-r10">login</span>
                 Sign - In
         </button>
-        <a href="./signup-page.html" className="btn btn-primary-outline">Don't have an account? Signup</a>
+        <Link to="/signup" className="btn btn-primary-outline">Don't have an account? Signup</Link>
     </div> 
     </section>
   )

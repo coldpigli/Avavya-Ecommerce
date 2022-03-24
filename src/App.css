@@ -335,6 +335,10 @@
 .btn-signup{
     width: 100%;
 }
+.cursor-point{
+    cursor: pointer;
+}
+
 
 /* Loading animation css  */
 .lds-ripple {
