@@ -1,3 +1,5 @@
+import { useAuth } from "../contexts";
+
 const Wishlist = () => {
 
   const {isLoggedIn, userDetails} = useAuth();

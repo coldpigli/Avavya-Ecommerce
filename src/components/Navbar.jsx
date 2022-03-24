@@ -37,7 +37,7 @@ const Navbar = () => {
                 <IconBadge nextPath={isLoggedIn?"/wishlist":"/login"} iconName="favorite_border" count={isLoggedIn?userDetails.wishList.length:3} />
             </div>
             <div className="cart">
-                <IconBadge nextPath={isLoggedIn?"/cart":"login"} iconName="shopping_cart" count={isLoggedIn?userDetails.cartList.length:3}/>
+                <IconBadge nextPath={isLoggedIn?"/cart":"/login"} iconName="shopping_cart" count={isLoggedIn?userDetails.cartList.length:3}/>
             </div>  
         </section>
     </header>
