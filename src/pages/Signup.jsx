@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {TextField} from "../components";
 import { useAuth } from "../contexts";
 
@@ -108,7 +108,7 @@ const Signup = () => {
           (signUpErrorMsg)?
         <p className="error-msg paragraph2 gap-d30">Sorry couldn't sign you up</p>: null
         }
-        <p className="paragraph2 txt-gray gap-d30"> <a href="./login-page.html">Already Have an Account?</a></p>
+        <p className="paragraph2 txt-gray gap-d30"> <Link to="/login">Already Have an Account?</Link></p>
         <button className="btn btn-primary btn-signup gap-d20" type="submit" onClick={(e)=>handleSignup(e,signupData)}>
             <span className="material-icons md-24 gap-r10">login</span>
                 Sign - Up
