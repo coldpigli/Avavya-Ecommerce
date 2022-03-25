@@ -7,6 +7,7 @@ import ProductItem from "./ProductItem";
 import ProductList from "./ProductList";
 import FilterItem from "./FilterItem";
 import FilterList from "./FilterList";
+import TextField from "./TextField";
 
 export {
     Navbar,
@@ -17,5 +18,6 @@ export {
     ProductItem,
     ProductList,
     FilterList,
-    FilterItem
+    FilterItem,
+    TextField
 }
