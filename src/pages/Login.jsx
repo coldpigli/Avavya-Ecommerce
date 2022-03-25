@@ -42,7 +42,7 @@ const Login = () => {
       navigate("/products")
     }
       else{
-        if(response.status=404)
+        if(response.status===404)
         setLoginErrorMsg("Oops! That didn't work. Check your credentials");
       }
     } catch (error) {
