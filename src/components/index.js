@@ -8,6 +8,7 @@ import ProductList from "./ProductList";
 import FilterItem from "./FilterItem";
 import FilterList from "./FilterList";
 import TextField from "./TextField";
+import WishlistItem from "./WishlistItem";
 
 export {
     Navbar,
@@ -19,5 +20,6 @@ export {
     ProductList,
     FilterList,
     FilterItem,
-    TextField
+    TextField,
+    WishlistItem
 }

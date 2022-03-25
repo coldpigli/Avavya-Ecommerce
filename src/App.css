@@ -238,7 +238,7 @@
 }
 
 .card:hover{
-    transform: scale(1.1);
+    transform: scale(1.01);
 }
 
 .card-image{
@@ -339,6 +339,20 @@
     cursor: pointer;
 }
 
+.wishlist-page{
+    margin: 0 auto;
+    width: 75%;
+}
+.dismiss{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.liked{
+    color: var(--cherry);
+}
 
 /* Loading animation css  */
 .lds-ripple {
@@ -424,5 +438,8 @@
     }
     .signup-name{
         display: block;
+    }
+    .wishlist-page{
+        width: 90%;
     }
 }
