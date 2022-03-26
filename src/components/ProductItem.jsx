@@ -8,8 +8,15 @@ const ProductItem = ({product}) => {
     const {wishList,cartList} = userDetails;
     const navigate = useNavigate();
 
-    const checkClick=()=>{
-        console.log("Add to Cart")
+    const addToCart=(product)=>{
+        if(isLoggedIn){
+            (cartList.find((item)=>item._id===product._id))?
+             setUserDetails({...userDetails, cartList: cartList.map((item)=>(item._id===product._id)?{...item, count: item.count+1}:item)})
+            :
+            setUserDetails({...userDetails, cartList: [...cartList, {...product, count: 1}]})
+        }else{
+            navigate("/login")
+        }
     }
 
     const {allProducts, setAllProducts} = useProducts();
@@ -59,7 +66,7 @@ const ProductItem = ({product}) => {
                         {/* <div className="counter-button bod-light heading3 children-middle">-</div>
                         <p>2</p>
                         <div className="counter-button bod-light heading3 children-middle">+</div> */}
-                        <div onClick={checkClick}><span className="add-to-bag material-icons md-24">add</span></div>
+                        <div onClick={()=>addToCart(product)}><span className="add-to-bag material-icons md-24">add</span></div>
                     </div>
                 </div>
             </div>
