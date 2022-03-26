@@ -62,11 +62,12 @@ const ProductItem = ({product}) => {
                     <h2 className="heading3">₹{price}</h2>
                     </div>
                     <div className="quantity-counter flex">
-                        {/* ToDo: Will toogle on the basis of count later  */}
-                        {/* <div className="counter-button bod-light heading3 children-middle">-</div>
-                        <p>2</p>
-                        <div className="counter-button bod-light heading3 children-middle">+</div> */}
+                        {(cartList.find((item)=>item._id===product._id))
+                        ?
+                        <div onClick={()=>navigate("/cart")}><span className="add-to-bag material-icons md-24">shopping_bag</span></div>
+                        :
                         <div onClick={()=>addToCart(product)}><span className="add-to-bag material-icons md-24">add</span></div>
+                    }     
                     </div>
                 </div>
             </div>
