@@ -67,7 +67,8 @@ const ProductItem = ({product}) => {
                         <div onClick={()=>navigate("/cart")}><span className="add-to-bag material-icons md-24">shopping_bag</span></div>
                         :
                         <div onClick={()=>addToCart(product)}><span className="add-to-bag material-icons md-24">add</span></div>
-                    }     
+                    }
+                        
                     </div>
                 </div>
             </div>
