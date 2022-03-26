@@ -1,41 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useProducts } from "../contexts";
+import React from 'react'
+import { Link } from 'react-router-dom';
+import { useAuth, useProducts} from '../contexts';
 
-const ProductItem = ({product}) => {
+const WishlistItem = ({product}) => {
 
-    const {imageUrl,isLiked,title,quantity,price,rating} = product;
-    const {isLoggedIn, userDetails,setUserDetails} = useAuth();
+    const {imageUrl,title,quantity,price,rating} = product;
+    const {userDetails,setUserDetails} = useAuth();
     const {wishList,cartList} = userDetails;
-    const navigate = useNavigate();
-
-    const checkClick=()=>{
-        console.log("Add to Cart")
-    }
-
     const {allProducts, setAllProducts} = useProducts();
 
-    const addToWishlist = (product) => {
-        if(isLoggedIn){
-            (wishList.find((item)=>item._id===product._id))
-            ?console.log("Item already exists"):
-            setUserDetails({...userDetails, wishList: [...wishList, product]})
-            const temp = allProducts.map((item)=>(item._id===product._id)?{...item, isLiked: true}:item)
-            setAllProducts(temp);
-        }
-        else{
-        navigate("/login")
-        }
+    const removeFromWishList = (product) => {
+        const temp = wishList.filter((item)=>product._id!==item._id);
+        setUserDetails({...userDetails, wishList: temp})
+        const temp2 = allProducts.map((item)=>(item._id===product._id)?{...item, isLiked: false}:item)
+        setAllProducts(temp2);
     }
 
   return (
-    <div className="card vertical-card bod-light">
+            <div className="card vertical-card bod-light">
                 <div className="card-image">
                     <Link to="/products">
                         <img src={imageUrl} alt="food"/>
                     </Link>
-                    <div className={`favourite ${product.isLiked?"liked":""}`} onClick={()=>addToWishlist(product)}>
+                    <div className="dismiss" onClick={()=>removeFromWishList(product)}>
                         <span className="material-icons md-24">
-                            favorite
+                            cancel
                         </span>
                     </div>
                 </div>
@@ -59,11 +48,11 @@ const ProductItem = ({product}) => {
                         {/* <div className="counter-button bod-light heading3 children-middle">-</div>
                         <p>2</p>
                         <div className="counter-button bod-light heading3 children-middle">+</div> */}
-                        <div onClick={checkClick}><span className="add-to-bag material-icons md-24">add</span></div>
+                        <div><span className="add-to-bag material-icons md-24">add</span></div>
                     </div>
                 </div>
             </div>
   )
 }
 
-export default ProductItem
+export default WishlistItem
