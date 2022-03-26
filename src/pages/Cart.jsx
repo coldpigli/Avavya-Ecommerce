@@ -33,7 +33,12 @@ const Cart = () => {
         </div>
       </section> 
       :
-      <h1>You need to login to access Cart</h1>
+      <div className="children-middle wrap">
+        <h1 className="txt-center gap-r30">You need to login to access Cart</h1>
+        <div>
+          <Link to="/login" className="btn btn-primary">Go To Login</Link>
+        </div>
+      </div>  
     }
    </div>
   )

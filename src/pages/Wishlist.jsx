@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { WishlistItem } from "../components";
 import BreadCrumb from "../containers/BreadCrumb";
 import { useAuth } from "../contexts";
@@ -31,7 +32,12 @@ const Wishlist = () => {
       </div>
       </div>
       :
-      <h1>You need to login to access wishList</h1>
+      <div className="children-middle wrap">
+        <h1 className="txt-center gap-r30">You need to login to access Wishlist</h1>
+        <div>
+          <Link to="/login" className="btn btn-primary">Go To Login</Link>
+        </div>
+      </div> 
     }
    </div>
   )

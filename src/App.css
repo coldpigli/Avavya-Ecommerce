@@ -112,6 +112,11 @@
     border-radius: 2.5rem;
 }
 
+.hero-cta{
+    display: flex;
+    gap: 1rem;
+}
+
 /*Dropdown*/
   
   .dropdown {
@@ -133,9 +138,7 @@
     display: block;
   }
   
-  .dropdown-content a:hover {
-      background-color: var(--background-skyblue-opaque);
-    }
+  
   
   .dropdown:hover .dropdown-content {
     display: block;
@@ -219,9 +222,7 @@
     border: 2px solid var(--brand-color)
 }
 
-.category-item:hover{
-    transform: scale(1.2);
-}
+
 
 .category-item span{
     font-size: 4rem;
@@ -237,9 +238,6 @@
     transition: transform .1s;
 }
 
-.card:hover{
-    transform: scale(1.01);
-}
 
 .card-image{
     background-color: var(--background-day);
@@ -259,7 +257,8 @@
     color: var(--brand-color);
     font-weight: 600;
     cursor: pointer;
-}
+    }
+
 
 .add-to-bag{
     color: var(--background-day);
@@ -268,9 +267,7 @@
     border-radius: var(--radius-round);
     cursor: pointer;
 }
-.add-to-bag:hover{
-    background-color: var(--primary-opaque);
-}
+
 
 .breadcrumbs{
     margin-bottom : 1.875rem;
@@ -301,9 +298,7 @@
     cursor: pointer;
     border-radius: var(--radius-md);
 }
-.filter-chip:hover{
-    transform: scale(1.1);
-}
+
 
 .filter-chip-active{
     color: var(--background-day);
@@ -407,9 +402,9 @@
     width: 30%;
 }
 
-
-
-
+.cart-item .cards-cta{
+    gap: 1rem;
+}
 
 .product-img{
     width: 8rem;
@@ -430,6 +425,24 @@
 .checkout .btn{
     width: 100%;
 }
+
+@media (hover: hover) {
+    .dropdown-content a:hover {
+        background-color: var(--background-skyblue-opaque);
+      }
+      .filter-chip:hover{
+        transform: scale(1.1);
+    }
+    .add-to-bag:hover{
+        background-color: var(--primary-opaque);
+    }
+    .card:hover{
+    transform: scale(1.01);
+    }
+    .category-item:hover{
+        transform: scale(1.2);
+    }
+  }
 
 /* Loading animation css  */
 .lds-ripple {
@@ -471,7 +484,7 @@
     .cart-block{
         display: grid;
         grid-template-columns: 1fr;
-        gap: 2rem;
+        /* gap: 2rem; */
         grid-template-areas: 
         "cart-item-list"
         "cart-total-info";
@@ -504,7 +517,9 @@
     .category-item{
         flex-grow: 1;
     }
-
+    .hero-cta{
+        display: block;
+    }
     .popular-item{
         gap: 0.5rem;
     }
@@ -529,5 +544,22 @@
     }
     .wishlist-page{
         width: 90%;
+    }
+    .product-img{
+        width: 5rem;
+        height: 5rem;
+    }
+    .card-price{
+        display: none;
+    }
+    .product-decription{
+        width: 60%;
+        font-size: 10px;
+    }
+    .cart-block{
+        width: 100%;
+    }
+    .delete-cart-item{
+        display: none;
     }
 }

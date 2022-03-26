@@ -47,7 +47,7 @@ const CartItem = ({product}) => {
                         <p>{count}</p>
                         <div class="counter-button bod-light heading3 children-middle" onClick={()=>addCartItem(product)}>+</div>
                     </div>
-                    <div onClick={()=>deleteFromCart(product)}><span class="add-to-bag material-icons md-24">delete</span></div>
+                    <div className="delete-cart-item" onClick={()=>deleteFromCart(product)}><span class="add-to-bag material-icons md-24">delete</span></div>
                 </div>
                 </div>
             </div>
