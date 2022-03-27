@@ -16,6 +16,14 @@ const WishlistItem = ({product}) => {
         setAllProducts(temp2);
     }
 
+    const addToCart=(product)=>{
+    (cartList.find((item)=>item._id===product._id))?
+    setUserDetails({...userDetails, cartList: cartList.map((item)=>(item._id===product._id)?{...item, count: item.count+1}:item)})
+    :
+    setUserDetails({...userDetails, cartList: [...cartList, {...product, count: 1}]})
+
+    }
+
   return (
             <div className="card vertical-card bod-light">
                 <div className="card-image">
@@ -43,12 +51,8 @@ const WishlistItem = ({product}) => {
                     <div className="quantity-counter flex">
                     <h2 className="heading3">₹{price}</h2>
                     </div>
-                    <div className="quantity-counter flex">
-                        {/* ToDo: Will toogle on the basis of count later  */}
-                        {/* <div className="counter-button bod-light heading3 children-middle">-</div>
-                        <p>2</p>
-                        <div className="counter-button bod-light heading3 children-middle">+</div> */}
-                        <div><span className="add-to-bag material-icons md-24">add</span></div>
+                    <div className="quantity-counter flex" onClick={()=>addToCart(product)}>
+                        <button className='btn btn-primary'><span className="add-to-bag material-icons md-24">shopping_cart</span></button>
                     </div>
                 </div>
             </div>

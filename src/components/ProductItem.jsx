@@ -26,8 +26,6 @@ const ProductItem = ({product}) => {
             (wishList.find((item)=>item._id===product._id))
             ?console.log("Item already exists"):
             setUserDetails({...userDetails, wishList: [...wishList, product]})
-            const temp = allProducts.map((item)=>(item._id===product._id)?{...item, isLiked: true}:item)
-            setAllProducts(temp);
         }
         else{
         navigate("/login")
@@ -40,7 +38,7 @@ const ProductItem = ({product}) => {
                     <Link to="/products">
                         <img src={imageUrl} alt="food"/>
                     </Link>
-                    <div className={`favourite ${product.isLiked?"liked":""}`} onClick={()=>addToWishlist(product)}>
+                    <div className={`favourite ${(wishList.find((item)=>item._id===product._id))?"liked":""}`} onClick={()=>addToWishlist(product)}>
                         <span className="material-icons md-24">
                             favorite
                         </span>
@@ -62,11 +60,13 @@ const ProductItem = ({product}) => {
                     <h2 className="heading3">₹{price}</h2>
                     </div>
                     <div className="quantity-counter flex">
-                        {/* ToDo: Will toogle on the basis of count later  */}
-                        {/* <div className="counter-button bod-light heading3 children-middle">-</div>
-                        <p>2</p>
-                        <div className="counter-button bod-light heading3 children-middle">+</div> */}
+                        {(cartList.find((item)=>item._id===product._id))
+                        ?
+                        <div onClick={()=>navigate("/cart")}><span className="add-to-bag material-icons md-24">shopping_bag</span></div>
+                        :
                         <div onClick={()=>addToCart(product)}><span className="add-to-bag material-icons md-24">add</span></div>
+                    }
+                        
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { CategoryList, SearchBar } from '../components';
 import ProductList from '../components/ProductList';
 import { CategorySection } from '../containers';
@@ -19,7 +20,14 @@ const Home = () => {
             <h1 className='heading1'>Daily Groceries</h1>
             <h2 className="heading2 txt-brand-color gap-d30">#Free Delivery</h2>
             {/* TODO: Implement Search Functionality */}
-            <SearchBar/> 
+            <div className='hero-cta'>
+              <Link to="/products" className='btn btn-secondary-outline gap-d20'>
+                <span class="material-icons md-24">open_in_browser</span>
+                Browse Products</Link> 
+              <Link to="/login" className='btn btn-secondary'>
+              <span class="material-icons md-24">login</span>
+                Login To Avavya</Link>
+            </div>
         </div>
     </section>
     <CategorySection title="Categories" nextUrl="Products">

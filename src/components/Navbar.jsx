@@ -6,7 +6,16 @@ import { useAuth } from '../contexts';
 
 const Navbar = () => {
 
-    const {isLoggedIn, userDetails} = useAuth();
+    const {isLoggedIn, setIsLoggedIn, userDetails, setUserDetails} = useAuth();
+    const logoutUser = () => {
+        setUserDetails({
+            cartList: [],
+            wishList: [],
+            firstName: ""
+        });
+        setIsLoggedIn(false);
+        localStorage.removeItem("userToken")
+    }
 
   return (
     <div className="navigation-top w-75">
@@ -30,8 +39,18 @@ const Navbar = () => {
                     <p className="user-name paragraph2 txt-gray"><strong>{isLoggedIn?userDetails.firstName:"Guest"} &#9660;</strong></p>
                     <img className="avatar avatar-xxs" src="https://ik.imagekit.io/avavya/Avavya-Ecommerce/avatar-4_zs49NigR6.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1647588926179" alt="user-avatar"></img>
                     <div className="dropdown-content">
-                        <NavLink to="/Login" className="user-name paragraph2 txt-gray">Login</NavLink>
-                        <NavLink to="/Signup" className="user-name paragraph2 txt-gray">SignUp</NavLink>  
+                        {
+                        isLoggedIn
+                        ?
+                        <NavLink to="/" className="user-name paragraph2 txt-gray" onClick={logoutUser}>
+                            Logout
+                        </NavLink>
+                        :
+                        <div>
+                            <NavLink to="/Login" className="user-name paragraph2 txt-gray">Login</NavLink>
+                            <NavLink to="/Signup" className="user-name paragraph2 txt-gray">SignUp</NavLink>
+                        </div>
+                        }  
                     </div>
                 </div>
             </div>
