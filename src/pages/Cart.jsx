@@ -4,8 +4,8 @@ import { useAuth } from "../contexts";
 
 const Cart = () => {
 
- const {isLoggedIn, userDetails} = useAuth();
- const {wishList,cartList} = userDetails;
+ const {userDetails} = useAuth();
+ const {isLoggedIn, wishList,cartList} = userDetails;
 
   return (
     <div>{

@@ -1,27 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth, useProducts} from '../contexts';
+import { addToCart, checkLogin, handleIncrementDecrement, removeFromWishlist } from '../utils';
 
 const WishlistItem = ({product}) => {
 
     const {imageUrl,title,quantity,price,rating} = product;
-    const {userDetails,setUserDetails} = useAuth();
-    const {wishList,cartList} = userDetails;
-    const {allProducts, setAllProducts} = useProducts();
-
-    const removeFromWishList = (product) => {
-        const temp = wishList.filter((item)=>product._id!==item._id);
-        setUserDetails({...userDetails, wishList: temp})
-        const temp2 = allProducts.map((item)=>(item._id===product._id)?{...item, isLiked: false}:item)
-        setAllProducts(temp2);
+    const {userDetails,dispatchUser} = useAuth();
+    const {isLoggedIn, cartList} = userDetails;
+    
+    const handleWishlist = (product) => {
+        if(checkLogin(isLoggedIn)){
+            removeFromWishlist(product, isLoggedIn, dispatchUser)
+        }
     }
 
-    const addToCart=(product)=>{
-    (cartList.find((item)=>item._id===product._id))?
-    setUserDetails({...userDetails, cartList: cartList.map((item)=>(item._id===product._id)?{...item, count: item.count+1}:item)})
-    :
-    setUserDetails({...userDetails, cartList: [...cartList, {...product, count: 1}]})
-
+    const handleCart=(product)=>{
+        if(cartList.find((item)=>item._id===product._id)){
+            handleIncrementDecrement(product, isLoggedIn, dispatchUser, "increment")
+        } else{
+            addToCart(product, isLoggedIn, dispatchUser)
+        }
     }
 
   return (
@@ -30,7 +29,7 @@ const WishlistItem = ({product}) => {
                     <Link to="/products">
                         <img src={imageUrl} alt="food"/>
                     </Link>
-                    <div className="dismiss" onClick={()=>removeFromWishList(product)}>
+                    <div className="dismiss" onClick={()=>handleWishlist(product)}>
                         <span className="material-icons md-24">
                             cancel
                         </span>
@@ -51,7 +50,7 @@ const WishlistItem = ({product}) => {
                     <div className="quantity-counter flex">
                     <h2 className="heading3">₹{price}</h2>
                     </div>
-                    <div className="quantity-counter flex" onClick={()=>addToCart(product)}>
+                    <div className="quantity-counter flex" onClick={()=>handleCart(product)}>
                         <button className='btn btn-primary'><span className="add-to-bag material-icons md-24">shopping_cart</span></button>
                     </div>
                 </div>

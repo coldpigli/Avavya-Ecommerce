@@ -4,7 +4,7 @@ const TotalBill = ({cartList}) => {
 
     const convenienceFee = 140;
     const subTotal = cartList.reduce((acc,curr)=>{
-        return acc+curr.count*curr.price;
+        return acc+curr.qty*curr.price;
     },0)
     const taxes = subTotal/10;
 
