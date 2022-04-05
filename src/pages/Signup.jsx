@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {TextField} from "../components";
 import { useAuth } from "../contexts";
+import { toast } from "../utils";
 
 const Signup = () => {
 
@@ -13,7 +14,7 @@ const Signup = () => {
     password: ""
   })
 
-  const {isLoggedIn, setIsLoggedIn, userDetails, setUserDetails} = useAuth();
+  const { dispatchUser} = useAuth();
   const [confirmPass, setConfirmPass] = useState("");
   const [showError, setShowError] = useState(false);
   const [signUpErrorMsg, setSignUpErrorMsg] = useState("");
@@ -34,18 +35,13 @@ const Signup = () => {
     try {
       const response = await axios.post("/api/auth/signup",credentials);
       if(response.status===200 || response.status===201){
-      setIsLoggedIn(true);
       setSignUpErrorMsg("");
-      console.log(response);
       const {data} = response;
-      const {firstName,cart,wishlist} = data.createdUser;
-      setUserDetails({
-        cartList: cart,
-        wishList: wishlist,
-        firstName: firstName
-      });
+      const {createdUser} = data;
+      dispatchUser({type:"LOGIN_USER", payload: createdUser})
       localStorage.setItem("userToken",data.encodedToken)
-      navigate("/products")
+      toast({type:"success", message:"Signed Up Successfully"})
+      navigate("/products");
     }
       else{
         if(response.status=404)
