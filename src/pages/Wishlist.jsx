@@ -5,8 +5,8 @@ import { useAuth } from "../contexts";
 
 const Wishlist = () => {
 
-  const {isLoggedIn, userDetails} = useAuth();
-  const {wishList,cartList} = userDetails;
+  const {userDetails} = useAuth();
+  const {isLoggedIn,wishList,cartList} = userDetails;
   return (
     <div className="wishlist-page">{
       (isLoggedIn)
@@ -16,7 +16,7 @@ const Wishlist = () => {
         <div className="category-header children-centered gap-d30">
             <h1 className="heading2">{userDetails.firstName}'s Wishlist</h1>
             <div className="category-cta">
-              {userDetails.wishList.length} items in Wishlist
+              {wishList.length} items in Wishlist
             </div>
         </div>
         <div className='popular-item children-middle wrap'>

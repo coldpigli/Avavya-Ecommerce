@@ -1,30 +1,28 @@
 import React from 'react'
 import { useAuth } from '../contexts';
+import { handleIncrementDecrement, removeFromCart } from '../utils';
 
 const CartItem = ({product}) => {
 
-  const {title,imageUrl, price, quantity, count} = product;
-  const {userDetails, setUserDetails} = useAuth();
-  const {cartList} = userDetails;
+  const {title,imageUrl, price, quantity, qty} = product;
+  const {userDetails, dispatchUser} = useAuth();
+  const {isLoggedIn, cartList} = userDetails;
 
   const deleteFromCart = (product) => {
-      const temp = cartList.filter((item)=>item._id!==product._id);
-      setUserDetails({...userDetails, cartList: temp});
+      removeFromCart(product, isLoggedIn, dispatchUser);
   }  
 
   const removeCartItem=(product)=>{
-        if(product.count < 2){
-            deleteFromCart(product)
+        if(product?.qty < 2){
+            removeFromCart(product, isLoggedIn, dispatchUser);
         }
         else{
-            const temp = cartList.map((item)=>item._id==product._id?{...item, count: item.count-1}:item)
-            setUserDetails({...userDetails,cartList: temp});
+            handleIncrementDecrement(product, isLoggedIn, dispatchUser, "decrement")
         }
   }
 
   const addCartItem=(product)=>{
-        const temp = cartList.map((item)=>item._id===product._id?{...item, count: item.count+1}:item)
-        setUserDetails({...userDetails,cartList: temp})
+        handleIncrementDecrement(product, isLoggedIn, dispatchUser, "increment")
   }
 
   return (
@@ -38,13 +36,13 @@ const CartItem = ({product}) => {
                     <p class="paragraph2 txt-gray">{quantity}</p>
                 </div>
                 <div class="card-price">
-                    <h3 class="heading3">{price*count}</h3>
-                    <p class="paragraph2 txt-gray">{price} x {count}</p>
+                    <h3 class="heading3">{price*qty}</h3>
+                    <p class="paragraph2 txt-gray">{price} x {qty}</p>
                 </div>
                 <div class="cards-cta flex">
                     <div class="quantity-counter flex">
                         <div class="counter-button bod-light heading3 children-middle" onClick={()=>removeCartItem(product)}>-</div>
-                        <p>{count}</p>
+                        <p>{qty}</p>
                         <div class="counter-button bod-light heading3 children-middle" onClick={()=>addCartItem(product)}>+</div>
                     </div>
                     <div className="delete-cart-item" onClick={()=>deleteFromCart(product)}><span class="add-to-bag material-icons md-24">delete</span></div>

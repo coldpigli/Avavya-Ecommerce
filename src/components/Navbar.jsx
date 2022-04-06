@@ -6,15 +6,11 @@ import { useAuth } from '../contexts';
 
 const Navbar = () => {
 
-    const {isLoggedIn, setIsLoggedIn, userDetails, setUserDetails} = useAuth();
+    const {userDetails, dispatchUser} = useAuth();
+    const {isLoggedIn} = userDetails;
     const logoutUser = () => {
-        setUserDetails({
-            cartList: [],
-            wishList: [],
-            firstName: ""
-        });
-        setIsLoggedIn(false);
         localStorage.removeItem("userToken")
+        dispatchUser({type: "LOGOUT_USER", payload: ""}) 
     }
 
   return (

@@ -11,6 +11,7 @@ import TextField from "./TextField";
 import WishlistItem from "./WishlistItem";
 import CartItem from "./CartItem";
 import TotalBill from "./TotalBill";
+import CartButton from "./CartButton";
 
 export {
     Navbar,
@@ -25,5 +26,6 @@ export {
     TextField,
     WishlistItem,
     CartItem,
-    TotalBill
+    TotalBill,
+    CartButton
 }

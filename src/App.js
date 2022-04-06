@@ -1,5 +1,6 @@
 import "./App.css";
 import { RoutingPath } from "./configs";
+import { ToastContainer} from 'react-toastify';
 import { Footer, Navbar } from "./components";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Navbar/>
       <RoutingPath/>
       <Footer/>
+      <ToastContainer />
     </div>
   );
 }

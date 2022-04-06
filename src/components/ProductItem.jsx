@@ -1,34 +1,32 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useProducts } from "../contexts";
+import { addToCart, addToWishlist, checkLogin, removeFromWishlist } from "../utils";
+import CartButton from "./CartButton";
 
 const ProductItem = ({product}) => {
 
-    const {imageUrl,isLiked,title,quantity,price,rating} = product;
-    const {isLoggedIn, userDetails,setUserDetails} = useAuth();
-    const {wishList,cartList} = userDetails;
+    const {imageUrl,title,quantity,price,rating} = product;
+    const {userDetails,dispatchUser} = useAuth();
+    const {isLoggedIn,wishList,cartList} = userDetails;
     const navigate = useNavigate();
 
-    const addToCart=(product)=>{
-        if(isLoggedIn){
-            (cartList.find((item)=>item._id===product._id))?
-             setUserDetails({...userDetails, cartList: cartList.map((item)=>(item._id===product._id)?{...item, count: item.count+1}:item)})
-            :
-            setUserDetails({...userDetails, cartList: [...cartList, {...product, count: 1}]})
-        }else{
-            navigate("/login")
+    const handleCart=(product)=>{
+        if(checkLogin(isLoggedIn)){
+            addToCart(product, isLoggedIn, dispatchUser);   
         }
     }
 
-    const {allProducts, setAllProducts} = useProducts();
+    const checkIteminWishlist = (product) => {
+        return wishList.find((item)=>item._id===product._id)
+    }
 
-    const addToWishlist = (product) => {
-        if(isLoggedIn){
-            (wishList.find((item)=>item._id===product._id))
-            ?console.log("Item already exists"):
-            setUserDetails({...userDetails, wishList: [...wishList, product]})
-        }
-        else{
-        navigate("/login")
+    const handleWishlist = (product) => {
+        if(checkLogin(isLoggedIn)){
+            checkIteminWishlist(product)
+            ?
+            removeFromWishlist(product, isLoggedIn, dispatchUser)
+            :
+            addToWishlist(product, isLoggedIn, dispatchUser);
         }
     }
 
@@ -38,7 +36,7 @@ const ProductItem = ({product}) => {
                     <Link to="/products">
                         <img src={imageUrl} alt="food"/>
                     </Link>
-                    <div className={`favourite ${(wishList.find((item)=>item._id===product._id))?"liked":""}`} onClick={()=>addToWishlist(product)}>
+                    <div className={`favourite ${checkIteminWishlist(product)?"liked":""}`} onClick={()=>handleWishlist(product)}>
                         <span className="material-icons md-24">
                             favorite
                         </span>
@@ -62,9 +60,9 @@ const ProductItem = ({product}) => {
                     <div className="quantity-counter flex">
                         {(cartList.find((item)=>item._id===product._id))
                         ?
-                        <div onClick={()=>navigate("/cart")}><span className="add-to-bag material-icons md-24">shopping_bag</span></div>
+                        <CartButton clickListener={()=>navigate("/cart")} icon="shopping_bag"/> 
                         :
-                        <div onClick={()=>addToCart(product)}><span className="add-to-bag material-icons md-24">add</span></div>
+                        <CartButton clickListener={()=>handleCart(product)} icon="add"/>
                     }
                         
                     </div>
