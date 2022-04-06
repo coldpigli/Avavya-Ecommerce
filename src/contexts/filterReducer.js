@@ -1,3 +1,5 @@
+import { toast } from "../utils"
+
 const filterReducer = (state, action) => {
 switch (action.type) {
 
@@ -16,9 +18,11 @@ switch (action.type) {
     case "Cost":
         const {sortByCost} = state;
         if(sortByCost.length===0 || sortByCost == "high_to_low"){
+            toast({type:"success",message:"Sorting Low to High"})
             return {...state, sortByCost: "low_to_high"}
         }
         else{
+            toast({type:"success",message:"Sorting High to Low"})
             return {...state, sortByCost: "high_to_low"}
         }
 
