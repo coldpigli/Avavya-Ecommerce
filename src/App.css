@@ -411,6 +411,18 @@
     height: 8rem;
 }
 
+.add-to-wishlist{
+    padding: 0.5rem;
+    color: gray;
+    cursor: pointer;
+}
+
+.added-to-wishlist{
+    padding: 0.5rem;
+    color: var(--cherry);
+    cursor: pointer;
+}
+
 
 .discount-coupon{
     background-color: var(--background-skyblue-opaque);
