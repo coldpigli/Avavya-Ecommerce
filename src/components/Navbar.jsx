@@ -12,7 +12,6 @@ const Navbar = () => {
         localStorage.removeItem("userToken")
         dispatchUser({type: "LOGOUT_USER", payload: ""}) 
     }
-    console.log("This is user Detials",userDetails);
 
   return (
     <div className="navigation-top w-75">
