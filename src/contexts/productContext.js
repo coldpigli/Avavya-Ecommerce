@@ -9,13 +9,10 @@ const ProductProvider = ({children}) => {
 
     const [allProducts, setAllProducts] = useState([]);
     const {loading, responseData, errorFlag} = useAxios("/api/products");
-    console.log(responseData)
     useEffect(() => {
         if(!loading && !errorFlag){
              setAllProducts([...responseData.products])
-        }
-        console.log(allProducts);
-        
+        }       
     }, [loading])
 
 

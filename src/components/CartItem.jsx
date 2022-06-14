@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from '../contexts';
 import { addToWishlist, handleIncrementDecrement, removeFromCart, removeFromWishlist } from '../utils';
 
@@ -6,7 +5,7 @@ const CartItem = ({product}) => {
 
   const {title,imageUrl, price, quantity, qty} = product;
   const {userDetails, dispatchUser} = useAuth();
-  const {isLoggedIn, cartList, wishList} = userDetails;
+  const {isLoggedIn, wishList} = userDetails;
 
   const deleteFromCart = (product) => {
       removeFromCart(product, isLoggedIn, dispatchUser);

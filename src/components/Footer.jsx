@@ -1,4 +1,3 @@
-import React from 'react'
 const Footer = () => {
   return (
     <section className="footer w-75 flex-vertical children-middle">

@@ -21,7 +21,6 @@ const useAxios = (endpoint) => {
             setLoading(false);
         }   
       })()
-      console.log("Use effect is being called")
     }, [])
     
    return {loading, responseData, errorFlag} 

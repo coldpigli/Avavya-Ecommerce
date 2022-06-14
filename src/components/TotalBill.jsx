@@ -2,11 +2,17 @@ import React from 'react';
 
 const TotalBill = ({cartList}) => {
 
-    const convenienceFee = 140;
     const subTotal = cartList.reduce((acc,curr)=>{
         return acc+curr.qty*curr.price;
     },0)
-    const taxes = subTotal/10;
+
+    const calculateTaxes = (amount) => {
+        return (amount>0) ? amount/10 : 0; 
+    }
+
+    const calculateConvenienceFee = (amount) => {
+        return (amount>0) ? amount/100: 0;
+    }
 
   return (
     <div class="cart-total-info flex-vertical">
@@ -27,15 +33,15 @@ const TotalBill = ({cartList}) => {
                     </div>
                     <div class="delivery-charges children-centered">
                         <p class="paragraph2">Taxes and GST</p>
-                        <p class="paragraph2">{taxes}</p>
+                        <p class="paragraph2">{calculateTaxes(subTotal)}</p>
                     </div>
                     <div class="convenience-charges children-centered">
                         <p class="paragraph2">Convinience Fee</p>
-                        <p class="paragraph2">{convenienceFee}</p>
+                        <p class="paragraph2">{calculateConvenienceFee(subTotal)}</p>
                     </div>
                     <div class="total children-centered gap-u30">
                         <h2 class="heading2">Grand Total</h2>
-                        <h2 class="heading2">{subTotal+taxes+convenienceFee}</h2>
+                        <h2 class="heading2">{(subTotal+calculateTaxes(subTotal)+calculateConvenienceFee(subTotal)).toFixed(2)}</h2>
                     </div>
                     <div class="checkout gap-u30">
                         <button class="btn btn-primary">
