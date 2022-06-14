@@ -1,4 +1,4 @@
-import React from 'react';
+import { razorpayLoadScript, toast } from '../utils';
 
 const TotalBill = ({cartList}) => {
 
@@ -13,6 +13,54 @@ const TotalBill = ({cartList}) => {
     const calculateConvenienceFee = (amount) => {
         return (amount>0) ? amount/100: 0;
     }
+
+    const calulateTotalAmount = (amount) => {
+        return (amount+calculateTaxes(amount)+calculateConvenienceFee(amount)).toFixed(0)
+    }
+
+    const handlePayment = async (totalAmount) => {
+        console.log("Payment", totalAmount);
+        const res = await razorpayLoadScript(
+          "https://checkout.razorpay.com/v1/checkout.js"
+        );
+    
+        if (!res) {
+          toast({
+            type: "error",
+            message: "Failed to initiate payment, please try again.",
+          });
+        }
+    
+        const options = {
+          key: process.env.REACT_APP_RAZORPAY_KEY,
+          amount: totalAmount*100,
+          currency: "INR",
+          name: "Avavya-Ecommerce",
+          description: "Thank you for shopping. Please pay to continue",
+          handler: function (response) {
+            const order = {
+              paymentId: response?.razorpay_payment_id,
+              amountPaid: totalAmount,
+            };
+            console.log("Order placed", order); //todo
+          },
+          prefill: {
+            name: "Piyush Das",
+            email: "piyushdas@gmail.com",
+            contact: "8617321874",
+          },
+          theme: {
+            color: "#1C7D5E",
+          },
+        };
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+      };
+  
+      const handlePlaceOrder = (e) => {
+        e.preventDefault();
+        handlePayment(calulateTotalAmount(subTotal));
+      };
 
   return (
     <div class="cart-total-info flex-vertical">
@@ -41,13 +89,15 @@ const TotalBill = ({cartList}) => {
                     </div>
                     <div class="total children-centered gap-u30">
                         <h2 class="heading2">Grand Total</h2>
-                        <h2 class="heading2">{(subTotal+calculateTaxes(subTotal)+calculateConvenienceFee(subTotal)).toFixed(2)}</h2>
+                        <h2 class="heading2">{calulateTotalAmount(subTotal)}</h2>
                     </div>
                     <div class="checkout gap-u30">
-                        <button class="btn btn-primary">
+                        {
+                            subTotal>0 && <button class="btn btn-primary" onClick={(e)=>handlePlaceOrder(e)}>
                             <span class="material-icons md-24">shopping_cart_checkout</span>
                             Proceed to Checkout
                         </button>
+                        }
                     </div>
                </div>
     </div>
